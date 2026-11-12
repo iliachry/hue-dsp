@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hue-dsp"
+version = "1.0.0"
+description = "Real-time 48 kHz CoreAudio Tap + 2048-pt Accelerate vDSP FFT + Spectral Flux Tempo PLL + 50 Hz DTLS 1.2 HueStream v2.0 music-reactive engine for Philips Hue & Spotify on macOS."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+  { name = "Ilias Chrysovergis", email = "iliachry@iliachry.gr" }
+]
+keywords = [
+  "philips-hue",
+  "huestream",
+  "dtls",
+  "coreaudio",
+  "vdsp",
+  "dsp",
+  "fft",
+  "tempo-tracking",
+  "spotify",
+  "macos",
+  "lighting",
+  "audio-visualization"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Environment :: MacOS X",
+  "Intended Audience :: Developers",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS :: MacOS X",
+  "Programming Language :: C",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Multimedia :: Sound/Audio :: Analysis",
+  "Topic :: Home Automation",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/iliachry/hue-dsp"
+Repository = "https://github.com/iliachry/hue-dsp"
+Author = "https://iliachry.gr"
+
+[project.scripts]
+hue-dsp = "hue_dsp.cli:main"
+hue-query = "hue_dsp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hue_dsp"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
